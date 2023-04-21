@@ -1,6 +1,7 @@
 import { NextSeo } from "next-seo";
 import Layout from "@components/layout";
 import React, { useState, useEffect } from "react";
+import { useNextSanityImage } from "next-sanity-image";
 import Container from "@components/container";
 import { useRouter } from "next/router";
 import client, {
@@ -14,14 +15,14 @@ import {
   configQuery,
   authorsquery // Add this import
 } from "@lib/groq";
-
-import GetImage from "@utils/getImage";
 import PostList from "@components/postlist";
 
 export default function Author(props) {
   const { postdata, siteconfig, preview } = props;
   const router = useRouter();
   const { author } = router.query; // Replace 'category' with 'author'
+  
+
 
   const { data: fetchedPosts } = usePreviewSubscription(
     postsbyauthorquery, // Update the query
@@ -50,18 +51,14 @@ export default function Author(props) {
   }
 
   const authorName =
-  (
-    fetchedPosts &&
-    Array.isArray(fetchedPosts[0]?.author) &&
-    fetchedPosts[0].author.filter(
-      e => e.slug.current === author
-    )[0]
-  )?.name || author;
-
-
-  const ogimage = siteConfig?.openGraphImage
-    ? GetImage(siteConfig?.openGraphImage).src
-    : defaultOG?.src;
+    (
+      fetchedPosts &&
+      Array.isArray(fetchedPosts[0]?.author) &&
+      fetchedPosts[0].author.filter(e => e.slug.current === author)[0]
+    )?.name || author;
+  
+    const imageProps = useNextSanityImage(client, siteConfig?.openGraphImage);
+    const ogimage = imageProps?.src || defaultOG?.src;
   return (
     <>
       {fetchedPosts && siteConfig && (
@@ -143,11 +140,14 @@ export async function getStaticPaths() {
   console.log("Authors:", authors); // Log the authors data
   return {
     paths:
-      authors?.map(author => ({
-        params: {
-          author: author.slug
-        }
-      })) || [],
+      authors
+        ?.filter(author => author.slug && author.slug.current) // Filter authors with valid slug.current
+        .map(author => ({
+          params: {
+            author: author.slug.current // Use author.slug.current
+          }
+        })) || [],
     fallback: true
   };
 }
+
