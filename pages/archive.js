@@ -32,29 +32,31 @@ export default function Post(props) {
   const [isLastPage, setIsLastPage] = useState(false);
 
   // [(($pageIndex - 1) * 10)...$pageIndex * 10]{
-  const params = {
-    pageIndex: (pageIndex - 1) * POSTS_PER_PAGE,
-    limit: pageIndex * POSTS_PER_PAGE
-  };
-
-  const {
-    data: posts,
-    error,
-    isValidating
-  } = useSWR([paginatedquery, params], fetcher, {
-    fallbackData: postdata,
-    onSuccess: () => {
-      setIsLoading(false);
-    }
-  });
-
-  useEffect(() => {
-    setIsFirstPage(pageIndex < 2);
-  }, [pageIndex]);
-
-  useEffect(() => {
-    setIsLastPage(posts.length < POSTS_PER_PAGE);
-  }, [posts]);
+    const params = {
+      pageIndex: (pageIndex - 1) * POSTS_PER_PAGE,
+      limit: pageIndex * POSTS_PER_PAGE + 1, // Fetch one more post
+    };
+    
+    const { data: fetchedPosts, error, isValidating } = useSWR(
+      [paginatedquery, params],
+      fetcher,
+      {
+        fallbackData: postdata,
+        onSuccess: () => {
+          setIsLoading(false);
+        },
+      }
+    );
+    
+    const posts = fetchedPosts.slice(0, POSTS_PER_PAGE); // Limit the displayed posts to POSTS_PER_PAGE
+    
+    useEffect(() => {
+      setIsFirstPage(pageIndex < 2);
+    }, [pageIndex]);
+    
+    useEffect(() => {
+      setIsLastPage(fetchedPosts.length <= POSTS_PER_PAGE); // Check if there's an extra post
+    }, [fetchedPosts]);
 
   const handleNextPage = () => {
     router.push(
