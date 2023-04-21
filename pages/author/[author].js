@@ -20,14 +20,16 @@ import PostList from "@components/postlist";
 export default function Author(props) {
   const { postdata, siteconfig, preview } = props;
   const router = useRouter();
-  const { author } = router.query; // Replace 'category' with 'author'
-  
+  const { author } = router.query;
 
+  // Call useNextSanityImage unconditionally
+  const imageProps = useNextSanityImage(client, siteconfig?.openGraphImage);
+  const ogimage = imageProps?.src || defaultOG?.src;
 
   const { data: fetchedPosts } = usePreviewSubscription(
-    postsbyauthorquery, // Update the query
+    postsbyauthorquery,
     {
-      params: { slug: author }, // Update the param
+      params: { slug: author },
       initialData: postdata,
       enabled: preview || router.query.preview !== undefined
     }
@@ -56,10 +58,8 @@ export default function Author(props) {
       Array.isArray(fetchedPosts[0]?.author) &&
       fetchedPosts[0].author.filter(e => e.slug.current === author)[0]
     )?.name || author;
-  
-    const imageProps = useNextSanityImage(client, siteConfig?.openGraphImage);
-    const ogimage = imageProps?.src || defaultOG?.src;
-  return (
+
+    return (
     <>
       {fetchedPosts && siteConfig && (
         <Layout {...siteConfig}>
@@ -95,23 +95,23 @@ export default function Author(props) {
               </p>
             </div>
             <div
-              className="grid gap-10 mt-20 lg:
+  className="grid gap-10 mt-20 lg:
 :gap-10 md:grid-cols-2 xl:grid-cols-3 ">
-              {filteredArticles.map(post => (
-                <PostList
-                  key={post._id}
-                  post={post}
-                  aspect="square"
-                />
-              ))}
-            </div>
+  {filteredArticles && filteredArticles.map(post => (
+    <PostList
+      key={post._id}
+      post={post}
+      aspect="square"
+    />
+  ))}
+</div>
+
           </Container>
         </Layout>
       )}
     </>
   );
 }
-
 export async function getStaticProps({ params, preview = false }) {
   const post = await getClient(preview).fetch(postsbyauthorquery, {
     slug: params.author
