@@ -114,14 +114,14 @@ export default function Author(props) {
 }
 export async function getStaticProps({ params, preview = false }) {
   const post = await getClient(preview).fetch(postsbyauthorquery, {
-    slug: params.author
+    slug: params.author,
   });
-  console.log("Posts by author:", post); // Log the posts by author data
+  console.log("Posts by author:", post);
   const config = await getClient(preview).fetch(configQuery);
 
-  if (!post || !post.length) {
+  if (!post || post.length === 0 || !config) {
     return {
-      notFound: true
+      notFound: true,
     };
   }
 
@@ -129,25 +129,33 @@ export async function getStaticProps({ params, preview = false }) {
     props: {
       postdata: post,
       siteconfig: { ...config },
-      preview
+      preview,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
+
 export async function getStaticPaths() {
   const authors = await client.fetch(authorsquery);
-  console.log("Authors:", authors); // Log the authors data
+  console.log("Authors:", authors);
+
+  if (!authors || authors.length === 0) {
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
+
   return {
-    paths:
-      authors
-        ?.filter(author => author.slug && author.slug.current) // Filter authors with valid slug.current
-        .map(author => ({
-          params: {
-            author: author.slug.current // Use author.slug.current
-          }
-        })) || [],
-    fallback: true
+    paths: authors
+      .filter((author) => author.slug && author.slug.current)
+      .map((author) => ({
+        params: {
+          author: author.slug.current,
+        },
+      })),
+    fallback: true,
   };
 }
 
