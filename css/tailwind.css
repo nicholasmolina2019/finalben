@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*! purgecss start ignore */
+@import "prism.css";
+/*! purgecss end ignore */
+
+/*Custom Styles Here*/
+
+.px-3 {
+    padding-left: 0.75rem;
+    padding-right: 4.75rem;
+}
+
+
+.py-16 {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+/* Add this to your CSS file or in a style tag in your layout component */
+[aria-haspopup="true"]:focus + [aria-hidden="true"],
+[aria-haspopup="true"]:active + [aria-hidden="true"] {
+  display: block;
+}
