@@ -77,27 +77,28 @@ export default function Author(props) {
       {fetchedPosts && siteConfig && (
         <Layout {...siteConfig} categories={siteConfig.categories}>
           <NextSeo
-            title={`${siteConfig?.title}`}
-            description={siteConfig?.description || ""}
-            canonical={siteConfig?.url}
-            openGraph={{
-              url: siteConfig?.url,
-              title: `${siteConfig?.title}`,
-              description: siteConfig?.description || "",
-              images: [
-                {
-                  url: ogimage,
-                  width: 800,
-                  height: 600,
-                  alt: ""
-                }
-              ],
-              site_name: "Stablo"
-            }}
-            twitter={{
-              cardType: "summary_large_image"
-            }}
-          />
+  title={`${siteConfig?.title}`}
+  description={siteConfig?.description || ""}
+  canonical={siteConfig?.url}
+  openGraph={{
+    url: siteConfig?.url,
+    title: `${siteConfig?.title}`,
+    description: siteConfig?.description || "",
+    images: [
+      {
+        url: ogimage,
+        width: 800,
+        height: 600,
+        alt: ""
+      }
+    ],
+    site_name: "Stablo"
+  }}
+  twitter={{
+    cardType: "summary_large_image"
+  }}
+/>
+
           <Container>
             <div className="flex flex-col items-center justify-center">
               <h1 className="text-3xl font-semibold tracking-tight lg:leading-tight text-brand-primary lg:text-5xl dark:text-white">
