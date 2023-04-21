@@ -23,3 +23,10 @@
 [aria-haspopup="true"]:active + [aria-hidden="true"] {
   display: block;
 }
+
+
+
+.px-5 {
+   padding-left: 2.40rem;
+  padding-right: 1.5rem;
+}
