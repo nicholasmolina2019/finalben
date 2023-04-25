@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Modal from "components/modal.js";
 import { useForm } from "react-hook-form";
-import useWeb3Forms from "use-web3forms";
 
 const MerakiUIContent = () => {
   const [showModal, setShowModal] = useState(false);
-  const apiKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
-  
+
   const {
     register,
     handleSubmit,
@@ -15,15 +13,11 @@ const MerakiUIContent = () => {
     mode: "onTouched"
   });
 
-  const { submit: onSubmit } = useWeb3Forms({
-    apikey: apiKey,
-    onSuccess: () => {
-      setShowModal(true);
-    },
-    onError: (msg, data) => {
-      console.error("Error submitting form:", msg);
-    }
-  });
+  const onSubmit = e => {
+    e.preventDefault();
+    document.getElementById("mc-embedded-subscribe-form").submit();
+    setShowModal(true);
+  };
 
   return (
     <div className="container px-6 py-16 mx-auto text-center">
@@ -40,26 +34,46 @@ const MerakiUIContent = () => {
 
         <div className="w-full max-w-sm mx-auto mt-6 bg-transparent border rounded-md dark:border-gray-700 focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 dark:focus-within:border-blue-300 focus-within:ring-opacity-40">
           <form
-            className="flex flex-col md:flex-row"
-            onSubmit={handleSubmit((data) => onSubmit({ ...data, email: data.email }))}
-            >
+            action="https://gmail.us21.list-manage.com/subscribe/post?u=b8a8f5596e56a7479f4da3db1&amp;id=f0855535fd&amp;f_id=00cab2e1f0"
+            method="post"
+            id="mc-embedded-subscribe-form"
+            name="mc-embedded-subscribe-form"
+            className="validate flex flex-col md:flex-row bg-transparent border rounded-md dark:border-gray-700 focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 dark:focus-within:border-blue-300 focus-within:ring-opacity-40"
+            target="hidden_iframe"
+            novalidate>
             <input
               type="email"
               placeholder="Enter your email address"
               className="flex-1 h-10 px-4 py-2 m-1 text-gray-700 placeholder-gray-400 bg-transparent border-none appearance-none dark:text-gray-200 focus:outline-none focus:placeholder-transparent focus:ring-0"
-              {...register("email", {
+              {...register("EMAIL", {
                 required: true,
                 pattern:
                   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
               })}
+              required
             />
-
+            <div
+              style={{ position: "absolute", left: "-5000px" }}
+              aria-hidden="true">
+              <input
+                type="text"
+                name="b_5cb58cb362644c57c706441f6_710cbc7828"
+                tabindex="-1"
+                value=""
+              />
+            </div>
             <button
               type="submit"
+              onClick={onSubmit}
               className="h-10 px-4 py-2 m-1 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-80">
               Subscribe
             </button>
           </form>
+          <iframe
+        name="hidden_iframe"
+        id="hidden_iframe"
+        style={{ display: "none" }}
+      ></iframe>
         </div>
       </div>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} />
