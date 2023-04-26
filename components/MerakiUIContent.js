@@ -19,6 +19,8 @@ const MerakiUIContent = () => {
     setShowModal(true);
   };
 
+  const handleInputChange = e => {}; // Add this function to handle input changes
+
   return (
     <div className="container px-6 py-16 mx-auto text-center">
       <div className="max-w-lg mx-auto">
@@ -40,7 +42,7 @@ const MerakiUIContent = () => {
             name="mc-embedded-subscribe-form"
             className="validate flex flex-col md:flex-row bg-transparent border rounded-md dark:border-gray-700 focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 dark:focus-within:border-blue-300 focus-within:ring-opacity-40"
             target="hidden_iframe"
-            novalidate>
+            noValidate> {/* Change here */}
             <input
               type="email"
               placeholder="Enter your email address"
@@ -50,16 +52,18 @@ const MerakiUIContent = () => {
                 pattern:
                   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
               })}
+              onChange={handleInputChange} // Add this line
               required
             />
-            <div
+                       <div
               style={{ position: "absolute", left: "-5000px" }}
               aria-hidden="true">
               <input
                 type="text"
                 name="b_5cb58cb362644c57c706441f6_710cbc7828"
-                tabindex="-1"
+                tabIndex="-1"
                 value=""
+                readOnly
               />
             </div>
             <button
@@ -70,10 +74,10 @@ const MerakiUIContent = () => {
             </button>
           </form>
           <iframe
-        name="hidden_iframe"
-        id="hidden_iframe"
-        style={{ display: "none" }}
-      ></iframe>
+            name="hidden_iframe"
+            id="hidden_iframe"
+            style={{ display: "none" }}
+          ></iframe>
         </div>
       </div>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} />
