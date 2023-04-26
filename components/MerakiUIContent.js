@@ -69,7 +69,7 @@ const MerakiUIContent = () => {
             <button
               type="submit"
               onClick={onSubmit}
-              className="h-10 px-4 py-2 m-1 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+              className="h-10 px-4 py-2 m-1 text-sm font-medium text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-80">
               Subscribe
             </button>
           </form>
