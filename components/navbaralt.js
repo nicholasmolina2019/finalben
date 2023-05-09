@@ -57,7 +57,7 @@ export default function NavbarAlt(props) {
                         />
                       ) : (
                         <span className="block text-center">
-                          Stablo
+                          5BENEFITS
                         </span>
                       )}
                     </a>
@@ -73,7 +73,7 @@ export default function NavbarAlt(props) {
                         />
                       ) : (
                         <span className="block text-center">
-                          Stablo
+                          5BENEFITS
                         </span>
                       )}
                     </a>

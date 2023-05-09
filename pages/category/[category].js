@@ -92,7 +92,7 @@ export default function Author(props) {
         alt: ""
       }
     ],
-    site_name: "Stablo"
+    site_name: "5BENEFITS"
   }}
   twitter={{
     cardType: "summary_large_image"

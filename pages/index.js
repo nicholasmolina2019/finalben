@@ -48,7 +48,7 @@ export default function Post(props) {
                   alt: ""
                 }
               ],
-              site_name: "Stablo"
+              site_name: "5BENEFITS"
             }}
             twitter={{
               cardType: "summary_large_image"
