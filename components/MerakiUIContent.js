@@ -28,7 +28,7 @@ const MerakiUIContent = () => {
       className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
       role="alert"
     >
-      <span className="text-xs bg-black rounded-full text-white px-4 py-1.5 mr-3">New</span>
+      <span className="text-xs font-medium text-white bg-gray-800 rounded-full text-white px-4 py-1.5 mr-3">New</span>
       <span className="text-sm font-medium">Notion Anabolic Recipe Book! See whats new</span>
       <svg
         className="ml-2 w-5 h-5"
