@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -11,14 +11,26 @@ export default function CategorySelection({
 }) {
   const router = useRouter();
   const [selectedCategories, setSelectedCategories] = useState([]);
-
   const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const filterArticles = useCallback((categorySlugs) => {
+    if (categorySlugs.length === 0 || categorySlugs.includes("all")) {
+      onFilterUpdate(articles);
+    } else {
+      const filtered = articles.filter(article =>
+        article.categories.some(category =>
+          categorySlugs.includes(category.slug.current)
+        )
+      );
+      onFilterUpdate(filtered);
+    }
+  }, [articles, onFilterUpdate]);
 
   useEffect(() => {
     console.log("Selected categories:", selectedCategories);
     filterArticles(selectedCategories);
     onSelectedCategoriesUpdate(selectedCategories);
-  }, [selectedCategories]);
+  }, [selectedCategories, filterArticles, onSelectedCategoriesUpdate]);
 
   const handleCategoryChange = (e, categorySlug) => {
     if (e.target.checked) {
@@ -30,19 +42,6 @@ export default function CategorySelection({
       setSelectedCategories(prevSelectedCategories =>
         prevSelectedCategories.filter(slug => slug !== categorySlug)
       );
-    }
-  };
-
-  const filterArticles = categorySlugs => {
-    if (categorySlugs.length === 0 || categorySlugs.includes("all")) {
-      onFilterUpdate(articles);
-    } else {
-      const filtered = articles.filter(article =>
-        article.categories.some(category =>
-          categorySlugs.includes(category.slug.current)
-        )
-      );
-      onFilterUpdate(filtered);
     }
   };
 
@@ -62,6 +61,7 @@ export default function CategorySelection({
       .join(", ");
     return `Filter: ${selectedCategoryNames}`;
   };
+
 
   return (
     <>
