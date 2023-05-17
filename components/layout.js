@@ -4,7 +4,7 @@ import { NextSeo } from "next-seo";
 import GetImage from "@utils/getImage";
 import NavbarAlt from "@components/navbaralt";
 import { cx } from "@utils/all";
-
+import Footer from "@components/footer"
 
 
 
@@ -50,7 +50,7 @@ export default function Layout(props) {
         
         </div>
         <main>{children}</main>
-        
+        <Footer {...props} />
       </div>
     </>
   );
