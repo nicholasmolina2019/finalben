@@ -15,7 +15,7 @@ const Footer = () => {
   });
 
   const onSubmit = e => {
-    e.preventDefault();
+    //e.preventDefault(); // this line is not needed
     document.getElementById("mc-embedded-subscribe-form").submit();
     setShowModal(true);
   };
@@ -35,27 +35,26 @@ const Footer = () => {
           </p>
 
           <div className="w-full max-w-sm mx-auto mt-6 bg-transparent border rounded-md dark:border-gray-700 focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 dark:focus-within:border-blue-300 focus-within:ring-opacity-40">
-            <form
-              action="https://gmail.us21.list-manage.com/subscribe/post?u=b8a8f5596e56a7479f4da3db1&amp;id=f0855535fd&amp;f_id=00cab2e1f0"
-              method="post"
-              id="mc-embedded-subscribe-form"
-              name="mc-embedded-subscribe-form"
-              className="validate flex flex-col md:flex-row bg-transparent border rounded-md dark:border-gray-700 focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 dark:focus-within:border-blue-300 focus-within:ring-opacity-40"
-              noValidate>
-              {" "}
-              {/* Change here */}
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="flex-1 h-10 px-4 py-2 m-1 text-gray-700 placeholder-gray-400 bg-transparent border-none appearance-none dark:text-gray-200 focus:outline-none focus:placeholder-transparent focus:ring-0"
-                {...register("EMAIL", {
-                  required: true,
+          <form
+            action="https://gmail.us21.list-manage.com/subscribe/post?u=b8a8f5596e56a7479f4da3db1&amp;id=f0855535fd&amp;f_id=00cab2e1f0"            
+            method="post"
+            id="mc-embedded-subscribe-form"
+            name="mc-embedded-subscribe-form"
+            className="validate flex flex-col md:flex-row bg-transparent border rounded-md dark:border-gray-700 focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 dark:focus-within:border-blue-300 focus-within:ring-opacity-40"
+            target="hidden_iframe"
+            noValidate> {/* Change here */}
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              className="flex-1 h-10 px-4 py-2 m-1 text-gray-700 placeholder-gray-400 bg-transparent border-none appearance-none dark:text-gray-200 focus:outline-none focus:placeholder-transparent focus:ring-0"
+              {...register("EMAIL", {
+                required: true,
                   pattern:
-                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-                })}
-                onChange={handleInputChange} // Add this line
-                required
-              />
+                  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+              })}
+              onChange={handleInputChange} // Add this line
+              required
+            />
               <div
                 style={{ position: "absolute", left: "-5000px" }}
                 aria-hidden="true">
@@ -68,17 +67,18 @@ const Footer = () => {
                 />
               </div>
               <button
-                type="submit"
-                onClick={onSubmit}
-                className="h-10 px-4 py-2 m-1 text-sm font-medium text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-80">
-                Subscribe
-              </button>
+              type="submit"
+              onClick={onSubmit}
+              className="h-10 px-4 py-2 m-1 text-sm font-medium text-white transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+              Subscribe
+            </button>
             </form>
-          </div>
-          <iframe
+            <iframe
             name="hidden_iframe"
             id="hidden_iframe"
             style={{ display: "none" }}></iframe>
+          </div>
+         
         </div>
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
           <div className="mx-auto max-w-sm lg:max-w-none">
@@ -191,16 +191,17 @@ const Footer = () => {
               <nav
                 aria-label="Footer About Nav"
                 className="mt-6 flex flex-col space-y-1">
+                  <Link
+                  href="/archive"
+                  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
+                  Archive
+                </Link>
                 <Link
                   href="/category/all"
                   className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
                  Category Page
                 </Link>
-                <Link
-                  href="/archive"
-                  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
-                  Archive
-                </Link>
+                
               </nav>
             </div>
 

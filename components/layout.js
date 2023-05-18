@@ -8,6 +8,7 @@ import Footer from "@components/footer"
 
 
 
+
 export default function Layout(props) {
   const {children } = props;
   const ogimage = GetImage(props?.openGraphImage)?.src ?? "";
