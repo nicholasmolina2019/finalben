@@ -25,7 +25,7 @@ class MyDocument extends Document {
               `,
             }}
           />
-
+   <meta name="p:domain_verify" content="f3af843d1063e954d937cbe50bf7ea42"/>
           <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Lora:wght@400;500;600&display=swap"
             rel="stylesheet"
