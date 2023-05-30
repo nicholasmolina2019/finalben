@@ -158,7 +158,7 @@ const MerakiUIContent = () => {
                   </svg>
                 </a>
               </Link>
-              <Link href="https://www.pinterest.com/5benefits" target="_blank" rel="noreferrer">
+              <Link href="https://www.pinterest.com/5benefitsco" target="_blank" rel="noreferrer">
                 <a className="text-gray-700 transition hover:text-gray-700/75">
                   <span className="sr-only"> Pinterest </span>
                   <svg
