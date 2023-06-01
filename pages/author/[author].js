@@ -95,7 +95,7 @@ export default function Author(props) {
               </p>
             </div>
             <div
-  className="grid gap-10 mt-20 lg:
+  className="grid mt-20 lg:
 :gap-10 md:grid-cols-2 xl:grid-cols-3 ">
   {filteredArticles && filteredArticles.map(post => (
     <PostList

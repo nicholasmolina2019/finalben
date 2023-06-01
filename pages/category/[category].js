@@ -52,6 +52,10 @@ export default function Author(props) {
   if (!router.isFallback && !fetchedPosts.length) {
     return <ErrorPage statusCode={404} />;
   }
+  useEffect(() => {
+    setFilteredArticles(fetchedPosts);
+  }, [fetchedPosts]);
+  
 
   const allCategories = siteConfig?.categories || [];
   const categoryTitle = allCategories.find(
@@ -60,13 +64,14 @@ export default function Author(props) {
 
   const handleSelectedCategoriesUpdate = updatedCategories => {
     const updatedCategoryNames = allCategories
-      .filter(category =>
-        updatedCategories.includes(category.slug.current)
-      )
+      .filter(category => updatedCategories.includes(category.slug.current))
       .map(category => category.title)
       .join(", ");
-
-    setSelectedCategoryNames(updatedCategoryNames);
+    
+    // Only update the state if the category names have changed
+    if (updatedCategoryNames !== selectedCategoryNames) {
+      setSelectedCategoryNames(updatedCategoryNames);
+    }
   };
 
   const ogimage = siteConfig?.openGraphImage
@@ -109,14 +114,12 @@ export default function Author(props) {
               </p>
             </div>
             <CategorySelection
-              articles={fetchedPosts}
-              allCategories={siteConfig.categories}
-              activeCategory={category}
-              onFilterUpdate={setFilteredArticles}
-              onSelectedCategoriesUpdate={
-                handleSelectedCategoriesUpdate
-              }
-            />
+  articles={fetchedPosts}
+  allCategories={siteConfig.categories}
+  activeCategory={category}
+  onSelectedCategoriesUpdate={handleSelectedCategoriesUpdate}
+  onFilterUpdate={setFilteredArticles}  // Add this line
+/>
 
             <div className="grid gap-10 mt-20 lg:gap-10 md:grid-cols-2 xl:grid-cols-3 ">
               {filteredArticles.map(post => (

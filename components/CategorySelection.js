@@ -27,10 +27,9 @@ export default function CategorySelection({
   }, [articles, onFilterUpdate]);
 
   useEffect(() => {
-    console.log("Selected categories:", selectedCategories);
     filterArticles(selectedCategories);
     onSelectedCategoriesUpdate(selectedCategories);
-  }, [selectedCategories, filterArticles, onSelectedCategoriesUpdate]);
+  }, [selectedCategories]);
 
   const handleCategoryChange = (e, categorySlug) => {
     if (e.target.checked) {
@@ -61,7 +60,6 @@ export default function CategorySelection({
       .join(", ");
     return `Filter: ${selectedCategoryNames}`;
   };
-
 
   return (
     <>
