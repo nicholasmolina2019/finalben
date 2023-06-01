@@ -49,13 +49,11 @@ export default function Author(props) {
     console.log("Filtered articles in parent:", filteredArticles);
   }, [filteredArticles]);
 
-  if (!router.isFallback && !fetchedPosts.length) {
-    return <ErrorPage statusCode={404} />;
-  }
   useEffect(() => {
-    setFilteredArticles(fetchedPosts);
+    if (fetchedPosts) {
+      setFilteredArticles(fetchedPosts);
+    }
   }, [fetchedPosts]);
-  
 
   const allCategories = siteConfig?.categories || [];
   const categoryTitle = allCategories.find(
