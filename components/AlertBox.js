@@ -7,16 +7,23 @@ export default function AlertBox() {
   const router = useRouter();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowAlert(true);
-    }, 5000); // 5 seconds
+    // Get the alert status from session storage
+    const hasAlertShown = sessionStorage.getItem('hasAlertShown');
 
-    router.events.on('routeChangeStart', closeAlert);
+    if (!hasAlertShown) {
+      const timer = setTimeout(() => {
+        setShowAlert(true);
+        // Save the alert status in session storage
+        sessionStorage.setItem('hasAlertShown', 'true');
+      }, 5000); // 5 seconds
 
-    return () => {
-      clearTimeout(timer);
-      router.events.off('routeChangeStart', closeAlert);
-    };
+      router.events.on('routeChangeStart', closeAlert);
+
+      return () => {
+        clearTimeout(timer);
+        router.events.off('routeChangeStart', closeAlert);
+      };
+    }
   }, []);
 
   const closeAlert = () => {
