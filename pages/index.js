@@ -9,6 +9,8 @@ import { postquery, configQuery } from "@lib/groq";
 import GetImage from "@utils/getImage";
 import PostList from "@components/postlist";
 import MerakiUIContent from "components/MerakiUIContent.js"; // Replace with the correct path to the MerakiUIContent.js file
+import AlertBox from '../components/AlertBox';
+
 
 export default function Post(props) {
   const { postdata, siteconfig, preview } = props;
@@ -75,7 +77,7 @@ export default function Post(props) {
                 />
               ))}
             </div>
-
+            <AlertBox />
           </Container>
         </Layout>
       )}
