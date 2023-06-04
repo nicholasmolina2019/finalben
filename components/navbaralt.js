@@ -20,15 +20,16 @@ export default function NavbarAlt(props) {
       label: "Contact",
       href: "/contact"
     },
-    ,
     {
       label: "Articles",
+      href: "/category/all"
+    },
+    ,
+    {
+      label: "Misc",
       href: "#",
       children: [
-        {
-          title: "Category Page",
-          path: "/category/all"
-        },
+  
         {
           title: "Search Page",
           path: "/search?q=life"

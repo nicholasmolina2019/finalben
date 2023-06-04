@@ -10,7 +10,7 @@
 
 .px-3 {
     padding-left: 0.75rem;
-    padding-right: 4.75rem;
+    padding-right: 2.75rem;
 }
 
 
@@ -30,3 +30,8 @@
   padding-left: 2.0rem;
   padding-right: 1.5rem;
 }
+
+.-ml-5 {
+  margin-left: -2rem
+}
+

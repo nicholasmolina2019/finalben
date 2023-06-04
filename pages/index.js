@@ -86,7 +86,7 @@ export default function Post(props) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const limit = 8;
+  const limit = 5;
   const post = await getClient(preview).fetch(postquery, { limit });
   const config = await getClient(preview).fetch(configQuery);
 
