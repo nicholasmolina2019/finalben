@@ -138,7 +138,7 @@ const Footer = () => {
                   </svg>
                 </a>
               </Link>
-              <Link href="https://www.pinterest.com/5benefits" target="_blank" rel="noreferrer">
+              <Link href="https://www.pinterest.com/5benefitsco/" target="_blank" rel="noreferrer">
                 <a className="text-gray-700 transition hover:text-gray-700/75">
                   <span className="sr-only"> Pinterest </span>
                   <svg
@@ -176,16 +176,16 @@ const Footer = () => {
                   Contact
                 </Link>
                 <Link
-                  href="/search?q=life"
+                  href="/category/all"
                   className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
-                 Search Page
+                 Articles
                 </Link>
               </nav>
             </div>
 
             <div>
               <p className="font-semibold text-gray-800 dark:text-white">
-                Articles
+                Misc
               </p>
 
               <nav
@@ -196,10 +196,11 @@ const Footer = () => {
                   className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
                   Archive
                 </Link>
+        
                 <Link
-                  href="/category/all"
+                  href="/search?q=life"
                   className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">
-                 Category Page
+                 Search Page
                 </Link>
                 
               </nav>
