@@ -60,7 +60,7 @@ export default function AlertBox() {
         <p className="mt-4 text-gray-500">
           {'New to Temu? Download via our link for a $100 coupon bundle! Register with our referral code for a 50% discount!'}
           
-          {'Click, sign up, and enjoy Temu\'s benefits today!'}
+          {' Click, sign up, and enjoy Temu\'s benefits today!'}
         </p>
 
         <div className="mt-6 sm:flex sm:gap-4">
