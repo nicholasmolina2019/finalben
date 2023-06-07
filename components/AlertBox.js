@@ -6,7 +6,6 @@ export default function AlertBox() {
 
   const router = useRouter();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Get the alert status from session storage
     const hasAlertShown = sessionStorage.getItem('hasAlertShown');
@@ -25,7 +24,7 @@ export default function AlertBox() {
         router.events.off('routeChangeStart', closeAlert);
       };
     }
-  }, []);
+  }, [router.events]); // Add router.events to the dependency array to fix the ESLint warning
 
   const closeAlert = () => {
     setShowAlert(false);
@@ -55,14 +54,13 @@ export default function AlertBox() {
             </svg>
           </span>
 
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <p className="font-medium sm:text-lg">New message!</p>
+          <p className="font-medium sm:text-lg">{'New message!'}</p>
         </div>
 
         <p className="mt-4 text-gray-500">
-          New to Temu? Download via our link for a $100 coupon bundle! Register with our referral code for a 50% discount!
+          {'New to Temu? Download via our link for a $100 coupon bundle! Register with our referral code for a 50% discount!'}
           
-          Click, sign up, and enjoy Temu's benefits today!
+          {'Click, sign up, and enjoy Temu\'s benefits today!'}
         </p>
 
         <div className="mt-6 sm:flex sm:gap-4">
