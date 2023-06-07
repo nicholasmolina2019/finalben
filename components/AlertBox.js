@@ -58,16 +58,21 @@ export default function AlertBox() {
       </div>
 
       <p className="mt-4 text-gray-500">
-      Wait! Before you leave, have you explored our unique collection yet? Discover an array of handcrafted, 
-      one-of-a-kind pieces in our Etsy store that are perfect for gifts,decor,or just to treat yourself!
+      Welcome! Unlock an exclusive offer by downloading Temu!
+        <br />
+        As a new Temu user, you'll receive a <span>$100</span> coupon bundle on downloading the app via our referral link. 
+        <br />
+        Plus, use our unique referral code after registration for a hefty 50% discount!
+        <br />
+        Download Below, sign up now, and dive into the world of Temu with these fantastic benefits!
       </p>
 
       <div className="mt-6 sm:flex sm:gap-4">
         <a
           className="inline-block w-full rounded-lg bg-gray-800 hover:bg-gray-700  px-4 py-3 text-center text-sm font-semibold text-white sm:w-auto"
-          href="https://www.etsy.com/shop/LOLMEMETEES?ref=l2-about-shopname"
+          href="https://temu.to/k/usRiX8O4jpPjGfq"
         >
-          Shop Now
+          Download
         </a>
 
         <button
