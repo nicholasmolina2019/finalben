@@ -68,7 +68,7 @@ export default function AlertBox() {
         <div className="mt-6 sm:flex sm:gap-4">
           <a
             className="inline-block w-full rounded-lg bg-gray-800 hover:bg-gray-700 px-4 py-3 text-center text-sm font-semibold text-white sm:w-auto"
-            href="https://temu.to/k/usRiX8O4jpPjGfq"
+            href={'https://temu.to/k/usRiX8O4jpPjGfq'}
           >
             Download
           </a>
