@@ -1,11 +1,14 @@
 import React from "react";
 
 const TablePreview = ({ value }) => {
-  const [head, ...rows] = value.table.rows;
-  // console.log(head);
-  if (!value) {
+  // Make sure value and value.table are both defined before trying to destructure value.table.rows
+  if (!value || !value.table) {
     return <p>Table: Add Values</p>;
   }
+
+  const [head, ...rows] = value.table.rows;
+  // console.log(head);
+
   return (
     <table>
       {head.cells.filter(Boolean).length > 0 && (
